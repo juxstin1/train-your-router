@@ -165,28 +165,28 @@ class FeedbackCollector:
 
     def _ask_correct_model(self) -> Optional[str]:
         """Ask user which model should have been used"""
-        print(f"\n{Colors.YELLOW}Which model should have been used?{Colors.RESET}")
-        print("  1. command-r-35b (tools)")
-        print("  2. qwen3-coder-30b (code)")
-        print("  3. ministral-14b (reasoning)")
-        print("  4. qwen3-vl-8b (vision)")
-        print("  5. gpt-oss-20b (complex)")
-        print("  6. gemma-3n-e4b (chat)")
-        print("  7. gemma-3-1b (simple)")
+        print(f"\n{Colors.YELLOW}Which model should have handled this?{Colors.RESET}")
+        print("  1. gpt-oss-20b      → tool use, browser, complex reasoning")
+        print("  2. qwen3-coder-30b  → code generation, FCPXML, scripting")
+        print("  3. ministral-14b    → fast reasoning, math")
+        print("  4. qwen3-vl-8b      → vision (images only)")
+        print("  5. gemma-3n-e4b     → general chat")
+        print("  6. gemma-3-1b       → simple queries")
+        print("  7. command-r-35b    → tool orchestration (fallback)")
 
         try:
-            choice = input("Model (1-7 or name): ").strip()
+            choice = input(f"{Colors.GRAY}Select [1-7]: {Colors.RESET}").strip()
         except (KeyboardInterrupt, EOFError):
             return None
 
         model_map = {
-            "1": "command-r-35b",
+            "1": "gpt-oss-20b",
             "2": "qwen3-coder-30b",
             "3": "ministral-14b-reasoning",
             "4": "qwen3-vl-8b",
-            "5": "gpt-oss-20b",
-            "6": "gemma-3n-e4b",
-            "7": "gemma-3-1b"
+            "5": "gemma-3n-e4b",
+            "6": "gemma-3-1b",
+            "7": "command-r-35b"
         }
 
         return model_map.get(choice, choice if choice else None)

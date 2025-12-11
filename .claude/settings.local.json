@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git commit -m \"$(cat <<''EOF''\nInitial commit: SFT dataset generator for LLM routing\n\n- Rules-based router with keyword matching for task classification\n- Health checks for LM Studio models and Playwright tools\n- Automatic fallback chains when primary model unavailable\n- JSONL logging with user feedback collection (thumbs up/down)\n- Session tracking for multi-turn conversations\n- Pattern detection for systematic misroutings\n- Metrics tracking with accuracy dashboard\n- AI observer (gemma-3-1b) watches logs for insights\n- Research agent generates daily analysis reports\n- Low confidence prompts for high-value training data\n\nModels: gpt-oss-20b (tools), qwen3-coder-30b (code), \nministral-14b (reasoning), qwen3-vl-8b (vision), \ngemma-3n-e4b (chat), gemma-3-1b (simple/router target)\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git remote:*)",
+      "Bash(git branch:*)",
+      "Bash(git push:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
