@@ -1,0 +1,60 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Logs and data (keep structure, ignore contents)
+logs/*.jsonl
+logs/**/*.jsonl
+logs/**/*.json
+!logs/.gitkeep
+
+# Research reports (generated)
+logs/research/reports/*.md
+
+# Session data
+logs/sessions/*.json
+
+# Observer data
+logs/research/observations/*.jsonl
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Local config
+.env
+*.local

@@ -1,0 +1,107 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Model Routing Dataset Schema",
+  "description": "Schema for training a model router to dispatch requests to specialized models",
+
+  "definitions": {
+    "model_id": {
+      "type": "string",
+      "enum": [
+        "command-r-35b",
+        "qwen3-coder-30b",
+        "ministral-14b-reasoning",
+        "qwen3-vl-8b",
+        "gpt-oss-20b",
+        "gemma-3n-e4b",
+        "gemma-3-1b"
+      ]
+    },
+    "task_type": {
+      "type": "string",
+      "enum": [
+        "tool_use",
+        "browser_automation",
+        "code_generation",
+        "vision",
+        "math_reasoning",
+        "complex_reasoning",
+        "reasoning",
+        "simple_chat",
+        "general_chat"
+      ]
+    },
+    "tool_name": {
+      "type": "string",
+      "enum": [
+        "browser_navigate",
+        "browser_screenshot",
+        "browser_click",
+        "browser_type",
+        "browser_scroll",
+        "browser_wait",
+        "browser_snapshot",
+        "file_read",
+        "file_write",
+        "code_execute",
+        "search",
+        "none"
+      ]
+    }
+  },
+
+  "type": "object",
+  "required": ["request", "best_model", "task_type"],
+  "properties": {
+    "request": {
+      "type": "string",
+      "description": "The user's actual request/query"
+    },
+    "context": {
+      "type": "object",
+      "properties": {
+        "has_image": {
+          "type": "boolean",
+          "default": false
+        },
+        "has_code": {
+          "type": "boolean",
+          "default": false
+        },
+        "conversation_history": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "available_tools": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/tool_name" }
+        }
+      }
+    },
+    "best_model": {
+      "$ref": "#/definitions/model_id",
+      "description": "The optimal model to handle this request"
+    },
+    "task_type": {
+      "$ref": "#/definitions/task_type",
+      "description": "Classification of the task type"
+    },
+    "tools_required": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/tool_name" },
+      "description": "Tools the model will need to complete the task"
+    },
+    "complexity": {
+      "type": "string",
+      "enum": ["simple", "medium", "complex"],
+      "description": "Estimated task complexity"
+    },
+    "reasoning": {
+      "type": "string",
+      "description": "Why this model is the best choice"
+    },
+    "fallback_model": {
+      "$ref": "#/definitions/model_id",
+      "description": "Alternative model if primary is unavailable"
+    }
+  }
+}
